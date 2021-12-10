@@ -1,11 +1,9 @@
 package ibf2021.d4;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,13 +31,14 @@ public class Cookie {
     public void load(String filename) throws IOException {
         //clears the list of cookies currently stored
         cookies.clear();
+        InputStream is = getClass().getResourceAsStream(filename);
+        InputStreamReader isr = new InputStreamReader(is);
+        // Path p = Paths.get("").toAbsolutePath();
+        // Path path = Paths.get(p + "/" + filename);
+        // File f = path.toFile();
 
-        Path p = Paths.get("").toAbsolutePath();
-        Path path = Paths.get(p + "/" + filename);
-        File f = path.toFile();
-
-        FileReader fr = new FileReader(f);
-        BufferedReader reader = new BufferedReader(fr);
+        // FileReader fr = new FileReader(f);
+        BufferedReader reader = new BufferedReader(isr);
         String cookie = "";
 
         while ((cookie = reader.readLine()) != null) {
